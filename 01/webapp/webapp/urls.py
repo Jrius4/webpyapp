@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from player.views import (PlayerDeleteView,PlayerUpdateView,PlayerViewSet)
+
+router = routers.DefaultRouter()
+router.register(r'players', PlayerViewSet,'player')
 
 urlpatterns = [
+    path('api-auth/',include('rest_framework.urls')),
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     path('', include('frontend.urls')),
+    path('api/players/<pk>/delete/', PlayerDeleteView.as_view()),
+    path('api/players/<pk>/update/', PlayerUpdateView.as_view()),
 ]

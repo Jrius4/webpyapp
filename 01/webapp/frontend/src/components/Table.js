@@ -7,10 +7,10 @@ const Table = ({ data }) =>
   ) : (
     <div className="column">
       <h2 className="subtitle">
-        Showing <strong>{data.length} items</strong>
+        Showing <strong>{data.length} players</strong>
       </h2>
-      <table className="table is-striped">
-        <thead>
+      <table className="table table-striped">
+        <thead className="thead-light">
           <tr>
             {Object.entries(data[0]).map(el => <th key={key(el)}>{el[0]}</th>)}
           </tr>
