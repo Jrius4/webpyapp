@@ -16,16 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from player.views import (PlayerDeleteView,PlayerUpdateView,PlayerViewSet)
+from player.views import (PlayerViewSet)
+from analyst.views import (AnalystViewSet)
+from Teammanager.views import (TeamManagerViewSet)
 
 router = routers.DefaultRouter()
 router.register(r'players', PlayerViewSet,'player')
+router.register(r'analysts', AnalystViewSet,'analysts')
+router.register(r'team_managers', TeamManagerViewSet,'team_managers')
 
 urlpatterns = [
     path('api-auth/',include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('', include('frontend.urls')),
-    path('api/players/<pk>/delete/', PlayerDeleteView.as_view()),
-    path('api/players/<pk>/update/', PlayerUpdateView.as_view()),
+    path('', include('frontend.urls'))
 ]

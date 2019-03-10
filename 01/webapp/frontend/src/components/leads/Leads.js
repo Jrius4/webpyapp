@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {getLeads, deleteplayer} from "../../actions/leads";
 import {Button} from "reactstrap";
 import PlayersForm from "./Form";
+import axios from "axios";
 
 class PlayersList extends Component {
   static propTypes ={
@@ -11,6 +12,15 @@ class PlayersList extends Component {
     getLeads: PropTypes.func.isRequired,
     deleteplayer: PropTypes.func.isRequired,
   };
+  /**
+            <Button size="sm" color="info" className="m-1">Edit</Button>&nbsp;<Button onClick={this.props.deleteplayer.bind(this, player.id)}  className="m-1" size="sm" color="danger">Delete</Button>
+   * 
+   
+  deleteplayer =item=>{
+    axios.get("/api/players/",item).then(res=>this.refreshList());
+  };
+  * 
+   * */
   componentDidMount(){
     this.props.getLeads();
   }
